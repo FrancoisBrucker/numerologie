@@ -1,27 +1,9 @@
 function nombre(chaine) {
     var somme = 0
-    for (var i = 0; i < chaine.length; i++) {
+    for (var i=0; i < chaine.length; i++) {
         somme += chaine.charCodeAt(i)
     }
     return somme
-}
-
-function somme(nombre) {
-    var somme = 0
-    chaine = String(nombre)
-    for (var i = 0; i < chaine.length; i++) {
-        somme += parseInt(chaine.charAt(i))
-    }
-    return somme
-}
-
-function chiffreAssocie(chaine) {
-    valeur = nombre(chaine)
-
-    while (valeur > 9) {
-        valeur = somme(valeur)
-    }
-    return valeur
 }
 
 // test de nombre(chaine)
@@ -31,10 +13,19 @@ console.log(nombre("cou"))
 console.log(nombre("coucou"))
 
 // chaque caractère :la somme est-elle correcte ?
-for (c of "cou") {
+for (c of "cou") { 
     console.log(c + " : " + nombre(c))
 }
 // fin de test de nombre(chaine)
+
+function somme(nombre) {
+    var somme = 0
+    chaine = String(nombre)
+    for (var i=0; i < chaine.length ; i++) {
+        somme += parseInt(chaine.charAt(i))
+    }
+    return somme
+}
 
 // test de somme(nombre)
 console.log(somme(132))
@@ -49,6 +40,15 @@ console.log(typeof "4".charAt(0))
 console.log(parseInt("4".charAt(0)))
 console.log(typeof parseInt("4".charAt(0)))
 // fin de test de somme(nombre)
+
+function chiffreAssocie(chaine) {
+    valeur = nombre(chaine)
+
+    while (valeur > 9) {
+        valeur = somme(valeur)
+    }
+    return valeur
+}
 
 // test de chiffreAssocie(chaine)
 

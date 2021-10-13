@@ -6,12 +6,19 @@ const port = 3000;
 
 const server = http.createServer((req, res) => {
     console.log(req.url)
-    
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
 
-    fichier = fs.readFileSync("./index.html", {encoding:'utf8'})
-    res.end(fichier);
+    if (req.url === "/" || req.url === "/index.html") {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
+    
+        fichier = fs.readFileSync("./index.html", {encoding:'utf8'})
+        res.end(fichier);
+    }
+    else {
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end();
+    }
 });
 
 server.listen(port, hostname, () => {

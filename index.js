@@ -1,3 +1,4 @@
+const path = require('path')
 const http = require('http');
 const fs = require('fs');
 
@@ -8,22 +9,19 @@ const server = http.createServer((req, res) => {
     console.log(req.url)
 
     if (req.url === "/") {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-    
-        fichier = fs.readFileSync("./index.html", {encoding:'utf8'})
-        res.end(fichier);
+        fichier = path.join(__dirname, "./index.html")        
+    } else {
+        fichier = path.join(__dirname,  req.url)
     }
-    else if (fs.existsSync("." + req.url)) {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
+    console.log("fichier : " + fichier)
+    if (fs.existsSync(fichier)) {
+        res.writeHead(200,  {'Content-Type': 'text/html'})
     
-        fichier = fs.readFileSync("." + req.url, {encoding:'utf8'})
+        fichier = fs.readFileSync(fichier, {encoding:'utf8'})
         res.end(fichier);
     }
     else {
-    res.statusCode = 404;
-    res.setHeader('Content-Type', 'text/plain');
+    res.writeHead(404,  {'Content-Type': 'text/plain'})
     res.end();
     }
 });

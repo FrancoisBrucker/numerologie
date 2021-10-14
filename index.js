@@ -3,6 +3,8 @@ const path = require('path')
 const express = require('express')
 const app = express()
 
+const numerologie = require('./back/numerologie');
+
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -18,6 +20,16 @@ app.get('/', (req, res) => {
     res.redirect(301, '/static/index.html')
 })
 
+app.get(encodeURI('/prénom'), (req, res) => {
+    console.log(req.query)
+    prenom = req.query["valeur"]
+    chiffre = numerologie.chiffre(prenom) 
+
+    res.json({
+        prénom: prenom,
+        chiffre: chiffre, 
+    })
+})
 
 app.use(function (req, res) {
     console.log("et c'est le 404 : " + req.url);

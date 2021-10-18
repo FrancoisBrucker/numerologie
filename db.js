@@ -6,7 +6,7 @@ const sequelize = new Sequelize({
   storage: path.join(__dirname, 'db.sqlite')
 });
 
-const MonModele = sequelize.define('MonModele', {
+const Signification = sequelize.define('Signification', {
     message: {
         type: DataTypes.STRING,
         allowNull: false
@@ -22,6 +22,6 @@ const MonModele = sequelize.define('MonModele', {
 module.exports = {
     sequelize: sequelize,
     model: {
-        MonModele: MonModele,
+        MonModele: Signification,
     }
 }

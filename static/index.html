@@ -24,6 +24,9 @@
             </div>
 
         </div>
+
+        <div id="message"></div>
+        
         <script>
         document.querySelector("#form-button").addEventListener("click", (event) => {
             prenom = document.querySelector("#form-input").value;
@@ -32,6 +35,7 @@
                     .then(response => response.json())
                     .then(data => {
                         document.querySelector("#chiffre").textContent = data.chiffre
+                        document.querySelector("#message").textContent = data.message
                         console.log(data)
                     })
             } else {

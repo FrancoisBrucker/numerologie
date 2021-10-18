@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 
 const numerologie = require('./back/numerologie');
+const db = require("./db")
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -24,10 +25,16 @@ app.get(encodeURI('/prénom'), (req, res) => {
     console.log(req.query)
     prenom = req.query["valeur"]
     chiffre = numerologie.chiffre(prenom) 
-
-    res.json({
-        prénom: prenom,
-        chiffre: chiffre, 
+    db.model.Signification.findOne({
+        where: {
+            nombre: chiffre
+        }
+    }).then((data) => {
+        res.json({
+            prénom: prenom,
+            chiffre: chiffre, 
+            message: data.message
+        })
     })
 })
 

@@ -19,9 +19,19 @@ const Signification = sequelize.define('Signification', {
     // Other model options go here
 });
 
+const Prenoms = sequelize.define('Prenoms', {
+    prenom: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+}, {
+    // Other model options go here
+});
+
 module.exports = {
     sequelize: sequelize,
     model: {
         Signification: Signification,
+        Prenoms: Prenoms,
     }
 }

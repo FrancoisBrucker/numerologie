@@ -22,6 +22,6 @@ const Signification = sequelize.define('Signification', {
 module.exports = {
     sequelize: sequelize,
     model: {
-        MonModele: Signification,
+        Signification: Signification,
     }
 }

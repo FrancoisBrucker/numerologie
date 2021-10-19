@@ -24,13 +24,13 @@ app.get('/', (req, res) => {
 app.get(encodeURI('/prénom'), (req, res) => {
     console.log(req.query)
     prenom = req.query["valeur"]
-    chiffre = numerologie.chiffre(prenom) 
+    chiffre = numerologie.chiffre(prenom)
     db.model.Prenoms.findOne({
         where: {
             prenom: prenom
         }
     }).then((data) => {
-        if (data === null ) {
+        if (data === null) {
             db.model.Prenoms.create({
                 prenom: prenom
             })
@@ -44,10 +44,24 @@ app.get(encodeURI('/prénom'), (req, res) => {
     }).then((data) => {
         res.json({
             prénom: prenom,
-            chiffre: chiffre, 
+            chiffre: chiffre,
             message: data.message
         })
     })
+})
+
+app.get('/api/prenoms/read', (req, res) => {
+    db.model.Prenoms.findAll()
+        .then((data) => {
+            var liste = []
+            for (element of data) {
+                liste.push({
+                    prenom: element.prenom,
+                    chiffre: numerologie.chiffre(element.prenom)
+                })
+            }
+            res.json(liste)
+        })
 })
 
 app.use(function (req, res) {

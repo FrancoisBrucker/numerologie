@@ -1,7 +1,9 @@
 let express = require('express');
 
-const numerologie = require('../back/numerologie');
+const numerologie = require('../back/numerologie')
 const db = require("../db")
+
+const apiRoutes = require('./api')
 
 let router = express.Router();
 
@@ -34,19 +36,7 @@ router.get(encodeURI('/prénom'), (req, res) => {
     })
 })
 
-router.get('/api/prenoms/read', (req, res) => {
-    db.model.Prenoms.findAll()
-        .then((data) => {
-            var liste = []
-            for (element of data) {
-                liste.push({
-                    prenom: element.prenom,
-                    chiffre: numerologie.chiffre(element.prenom)
-                })
-            }
-            res.json(liste)
-        })
-})
+router.use('/api', apiRoutes)
 
 
 module.exports = router

@@ -1,10 +1,11 @@
 const rewire = require('rewire')
+const { chiffre } = require('../back/numerologie')
 
 const numerologieRewire = rewire('../back/numerologie')
 const numerologie = {
     nombre: numerologieRewire.__get__('nombre'),
     somme: numerologieRewire.__get__('somme'),
-    chiffreAssocie: numerologieRewire.__get__('chiffreAssocie'),
+    chiffreAssocie: chiffre,
 }
 
 describe("numerologie.nombre", () => {
@@ -37,5 +38,13 @@ describe("numerologie.chiffreAssocie", () => {
         expect(numerologie.chiffreAssocie("éç")).toBe(1 + 4)
     })
 })
+
+// pour le coverage non complet du cours
+//
+// describe("numerologie.chiffreAssocie", () => {
+//     test("éç", () => {
+//         expect(numerologie.chiffreAssocie("")).toBe(0)
+//     })
+// })
 
 

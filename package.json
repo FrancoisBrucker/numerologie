@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "jest": "^27.3.1",
+    "jsdom": "^18.0.0",
     "rewire": "^5.0.0",
     "supertest": "^6.1.6"
   }

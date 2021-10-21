@@ -4,7 +4,6 @@ process.env.NODE_ENV = 'test'
 
 const db = require("../db")
 const app = require('../app');
-const { stream } = require('npmlog');
 
 beforeEach(async () => {
     await db.sequelize.sync({force: true})

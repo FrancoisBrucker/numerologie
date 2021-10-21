@@ -17,9 +17,12 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
+    "chromedriver": "^94.0.0",
+    "geckodriver": "^2.0.4",
     "jest": "^27.3.1",
     "jsdom": "^18.0.0",
     "rewire": "^5.0.0",
+    "selenium-webdriver": "^4.0.0",
     "supertest": "^6.1.6"
   }
 }

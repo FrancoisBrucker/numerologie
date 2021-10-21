@@ -8,7 +8,7 @@ const apiRoutes = require('./api')
 let router = express.Router();
 
 router.get(encodeURI('/prénom'), (req, res) => {
-    console.log(req.query)
+    // console.log(req.query)
     prenom = req.query["valeur"]
     chiffre = numerologie.chiffre(prenom)
     db.model.Prenoms.findOne({
@@ -21,7 +21,7 @@ router.get(encodeURI('/prénom'), (req, res) => {
                 prenom: prenom
             })
         }
-        console.log(data)
+        // console.log(data)
     })
     db.model.Signification.findOne({
         where: {
